@@ -5,8 +5,8 @@ const MCQ = (props) => {
   const questions = [];
   const answers = [];
   props.data.forEach((item) => {
-    let ques = item.ques;
-    let ans = item.ans;
+    let ques = item.question;
+    let ans = item.answer;
     questions.push(ques);
     answers.push(ans);
   });

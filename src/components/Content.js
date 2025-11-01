@@ -30,7 +30,7 @@ const Content = (props) => {
     setError(false);
     const context = document.getElementById("context").value;
     let limit = document.getElementById("limit").value;
-    if (!(limit > 5 && limit < 25)) limit = 10;
+    if (!(limit >= 5 && limit <= 25)) limit = 10;
     fetchDataAPI(context, limit, setError, setFetchedContent, setIsLoading);
   };
 

@@ -177,25 +177,55 @@ async function fetchDataAPI(
     //     limit: 5,
     //   },
     // });
-    let url = new URL("https://faq-generator-1.loca.lt/api");
-    let params = { context: context, limit: limit };
-    url.search = new URLSearchParams(params).toString();
-    let response = await fetch(url);
-    console.log(response);
+    // Build API URL from environment or default to common FastAPI dev port
+    // If your FastAPI server runs on a different host/port, set REACT_APP_API_URL
+    // in a .env file or your shell (for example: REACT_APP_API_URL=http://127.0.0.1:7860)
+    const API_BASE = (process.env.REACT_APP_API_URL || "http://127.0.0.1:7860").replace(/\/+$/,'');
+    const url = `${API_BASE}/api`;
+
+    const payload = { context, limit };
+
+    let response;
+    try {
+      response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (err) {
+      // Network-level failures (DNS, refused connection, CORS/preflight blocked as network error)
+      console.error('Network/fetch error:', err, 'url:', url);
+      setError(true);
+      setIsLoading(false);
+      return;
+    }
+
+    console.log('response', response);
+    if (!response.ok) {
+      const text = await response.text().catch(() => '<no body>');
+      console.error('API returned error:', response.status, text);
+      setError(true);
+      setIsLoading(false);
+      return;
+    }
+
     const cxt = await response.json();
     console.log(cxt);
 
-    url = new URL("https://faq-generator-1.loca.lt/extra");
-    params = { context: context };
-    url.search = new URLSearchParams(params).toString();
-    response = await fetch(url);
-    console.log(response);
-    const domain = await response.json();
-    console.log(domain);
+    // url = new URL("https://faq-generator-1.loca.lt/extra");
+    // params = { context: context };
+    // url.search = new URLSearchParams(params).toString();
+    // response = await fetch(url);
+    // console.log(response);
+    // const domain = await response.json();
+    // console.log(domain);
 
-    const data = { context: cxt, domain: domain };
-    console.log(data);
-    setFetchedContent(data);
+    // const data = { context: cxt, domain: domain };
+    // console.log(data);
+    setFetchedContent(cxt);
   } catch {
     setError(true);
   }
