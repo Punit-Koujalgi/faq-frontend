@@ -1,6 +1,6 @@
 {
-  "homepage": "http://Punit-Koujalgi.github.io/AssessMe",
-  "name": "assess-me",
+  "homepage": "http://Punit-Koujalgi.github.io/FAQGenerator",
+  "name": "faq-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
