@@ -6,6 +6,7 @@ import FITB from "./types/fitb";
 import MCQ from "./types/mcq";
 import fetchDataAPI from "./utilities/Data";
 import Default from "./types/Default";
+import { passages } from "../data/passages";
 
 const Content = (props) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +33,19 @@ const Content = (props) => {
     let limit = document.getElementById("limit").value;
     if (!(limit >= 5 && limit <= 25)) limit = 10;
     fetchDataAPI(context, limit, setError, setFetchedContent, setIsLoading);
+  };
+
+  const loadRandomContext = () => {
+    if (isLoading) return;
+    
+    if (passages.length > 0) {
+      // Pick a random passage
+      const randomIndex = Math.floor(Math.random() * passages.length);
+      const randomPassage = passages[randomIndex];
+      
+      // Set the textarea value
+      document.getElementById("context").value = randomPassage;
+    }
   };
 
   const clear = () => {
@@ -63,6 +77,12 @@ const Content = (props) => {
               className="btn shadow-none navButtons m-0"
               onClick={fetchData}>
               Evaluate
+            </button>
+            <button
+              type="button"
+              className="btn shadow-none navButtons"
+              onClick={loadRandomContext}>
+              Random-Context
             </button>
             <button
               type="button"
