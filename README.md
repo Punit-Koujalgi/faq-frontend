@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# 🤖 AutoFAQs — Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Beautiful, simple React frontend for the AutoFAQs project — a small FAQ generator and demo app.
 
-## Available Scripts
+Live demo: http://Punit-Koujalgi.github.io/faq-frontend
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## ✨ What is this?
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+AutoFAQs is a compact React single-page app where a user can enter context (say from there website) and hit evaluate to generate a set of FAQ questions that the users of their website might have.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This repository contains the frontend only. It can be used as a static site (see `build/` and `public/`) or run locally for development.
 
-### `npm test`
+## 🚀 Key features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Lightweight React app (Create React App)
+- Minimal dependencies: React, Bootstrap, axios
+- Organized components under `src/components` with small UI types in `src/components/types`
+---
 
-### `npm run build`
+## 🧰 Tech stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React 17 (Create React App)
+- Bootstrap 5
+- axios for HTTP (used when extending to a backend)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+See `package.json` for exact versions.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 📦 Quick start — clone, install, run
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Clone the repo
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/Punit-Koujalgi/faq-frontend.git
+cd faq-frontend
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. Install dependencies
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+3. Run in development mode (hot reload)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Open http://localhost:3000 in your browser. The app uses `react-scripts` and the start script includes `--openssl-legacy-provider` to avoid some legacy OpenSSL builds on older Node versions.
 
-### Code Splitting
+4. Build for production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm run build
+```
 
-### Analyzing the Bundle Size
+The optimized static output will be in the `build/` folder. You can serve it with any static host or use GitHub Pages.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. Deploy to GitHub Pages (optional)
 
-### Making a Progressive Web App
+This project includes a `deploy` script that uses `gh-pages`. Before running it, install `gh-pages` if you plan to use it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash
+# install if you don't have it
+npm install --save-dev gh-pages
 
-### Advanced Configuration
+# build + publish
+npm run deploy
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📁 Project structure (important files)
 
-### Deployment
+- `public/` — static public files used by the app
+- `build/` — generated production build (committed here for GitHub Pages hosting)
+- `src/` — source code
+	- `App.js`, `index.js` — entry points
+	- `components/` — UI components and small type variants
+	- `utilities/Data.js` — data loader / helpers
+- `data/passages.js` and `passages.txt` — source content for the FAQ/passages
+- `package.json` — scripts and dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+Currently, the project is deployed with Github Actions to Github pages!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
